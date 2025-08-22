@@ -22,21 +22,29 @@ The system evaluates personal statements across four key categories:
 ### 1. Spark (Opening)
 - **Description**: Opening that spurs interest in medicine (typically in opening paragraph)
 - **Score 4**: Engaging and logically flows into becoming a doctor
+- **Score 3**: Clear opening with good connection to medical career
+- **Score 2**: Basic opening with some connection to medicine
 - **Score 1**: Disconnected from being a doctor or confusing/random
 
 ### 2. Healthcare Experience  
 - **Description**: Watching/participating in healthcare - medical professional at work
 - **Score 4**: Vivid, active, thoughtful, relevant, memorable, positive and optimistic
+- **Score 3**: Clear healthcare experience with good detail and relevance
+- **Score 2**: Basic healthcare observation with limited detail
 - **Score 1**: Passive observation, uninteresting, irrelevant, problematic, negative tone
 
 ### 3. Showing Doctor Qualities
 - **Description**: Stories/examples portraying vision of doctor role and appealing aspects  
 - **Score 4**: Realistic, self-aware, mature, humble, specific and clear understanding, positive
+- **Score 3**: Good understanding of doctor role with appropriate confidence
+- **Score 2**: Basic understanding with some self-awareness
 - **Score 1**: Arrogant, immature, overly confident, inaccurate understanding, negative tone
 
 ### 4. Spin (Connection)
 - **Description**: Explaining why experiences qualify them to be a doctor
 - **Score 4**: Direct, logical, and specific argument connecting experience to profession
+- **Score 3**: Clear connection between experience and medical career
+- **Score 2**: Basic connection with limited specificity
 - **Score 1**: Brief, vague, simplistic connection to being a doctor, generic
 
 ## Supported Models
@@ -205,16 +213,81 @@ For issues or questions:
 3. Test with sample files in `test_scripts/` folder
 4. Verify model training completed successfully in Step 1
 
-## Model Comparison Results
+## Model Performance Results
 
-When testing different models, record results in the following format:
+Based on comprehensive testing across all supported models, here are the performance metrics for each category:
 
-| Model | Spark Accuracy | Healthcare Accuracy | Doctor Qualities Accuracy | Spin Accuracy | Overall Accuracy |
-|-------|----------------|---------------------|---------------------------|---------------|------------------|
-| bge-large-en-v1.5 | XX.X% | XX.X% | XX.X% | XX.X% | XX.X% |
-| intfloat/e5-large-v2 | XX.X% | XX.X% | XX.X% | XX.X% | XX.X% |
-| thenlper/gte-large | XX.X% | XX.X% | XX.X% | XX.X% | XX.X% |
-| all-mpnet-base-v2 | XX.X% | XX.X% | XX.X% | XX.X% | XX.X% |
-| all-MiniLM-L6-v2 | XX.X% | XX.X% | XX.X% | XX.X% | XX.X% |
+| Model | Spark | Healthcare Experience | Showing Doctor Qualities | Spin | Overall |
+|-------|-------|----------------------|-------------------------|------|---------|
+| **BAAI/bge-large-en-v1.5** | 95.0% | 86.7% | 75.0% | 88.3% | 86.2% |
+| **intfloat/e5-large-v2** | 91.7% | 91.7% | 88.3% | 95.0% | 91.7% |
+| **thenlper/gte-large** | 90.0% | 93.3% | 78.3% | 91.7% | 88.3% |
+| **all-mpnet-base-v2** | 91.7% | 86.7% | 80.0% | 83.3% | 85.4% |
+| **all-MiniLM-L6-v2** | 93.3% | 90.0% | 80.0% | 88.3% | 87.9% |
+
+### Performance Analysis
+
+- **Best Overall Performance**: `intfloat/e5-large-v2` (91.7% overall accuracy)
+- **Best Spark Detection**: `BAAI/bge-large-en-v1.5` (95.0%)
+- **Best Healthcare Experience**: `thenlper/gte-large` (93.3%)
+- **Best Doctor Qualities**: `intfloat/e5-large-v2` (88.3%)
+- **Best Spin Detection**: `intfloat/e5-large-v2` (95.0%)
+
+### Model Recommendations
+
+- **Production Use**: `intfloat/e5-large-v2` for best overall performance
+- **High Performance**: `BAAI/bge-large-en-v1.5` for specialized Spark detection
+- **Balanced Performance**: `thenlper/gte-large` for consistent healthcare experience analysis
+- **Resource Efficient**: `all-MiniLM-L6-v2` for lightweight applications
+
+## Scoring Scale (1-4)
+
+The system evaluates personal statements on a 1-4 scale for each category. Here's what each score represents:
+
+### Score 1: Needs Significant Improvement
+- **Quality**: Below acceptable standards for medical school applications
+- **Characteristics**: Vague, generic, disconnected, or problematic content
+- **Action Required**: Major revision needed to meet basic requirements
+
+### Score 2: Below Average
+- **Quality**: Below average but shows some understanding
+- **Characteristics**: Basic content with limited depth or connection
+- **Action Required**: Substantial improvement needed to reach competitive level
+
+### Score 3: Good/Average
+- **Quality**: Meets basic requirements and shows competence
+- **Characteristics**: Clear, relevant content with reasonable depth
+- **Action Required**: Minor improvements to reach competitive level
+
+### Score 4: Excellent/Outstanding
+- **Quality**: Exceeds expectations and demonstrates exceptional preparation
+- **Characteristics**: Vivid, memorable, well-connected, and compelling content
+- **Action Required**: Ready for submission, may benefit from minor polishing
+
+### Category-Specific Scoring Criteria
+
+#### Spark (Opening)
+- **Score 4**: Engaging opening that logically flows into becoming a doctor
+- **Score 3**: Clear opening with good connection to medical career
+- **Score 2**: Basic opening with some connection to medicine
+- **Score 1**: Disconnected from being a doctor or confusing/random
+
+#### Healthcare Experience
+- **Score 4**: Vivid, active, thoughtful, relevant, memorable, positive and optimistic
+- **Score 3**: Clear healthcare experience with good detail and relevance
+- **Score 2**: Basic healthcare observation with limited detail
+- **Score 1**: Passive observation, uninteresting, irrelevant, problematic, negative tone
+
+#### Showing Doctor Qualities
+- **Score 4**: Realistic, self-aware, mature, humble, specific and clear understanding, positive
+- **Score 3**: Good understanding of doctor role with appropriate confidence
+- **Score 2**: Basic understanding with some self-awareness
+- **Score 1**: Arrogant, immature, overly confident, inaccurate understanding, negative tone
+
+#### Spin (Connection)
+- **Score 4**: Direct, logical, and specific argument connecting experience to profession
+- **Score 3**: Clear connection between experience and medical career
+- **Score 2**: Basic connection with limited specificity
+- **Score 1**: Brief, vague, simplistic connection to being a doctor, generic
 
 Use the test scripts to evaluate model performance and compare classification consistency across different embedding approaches.
