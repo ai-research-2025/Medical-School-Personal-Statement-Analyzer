@@ -6,6 +6,13 @@ An AI-powered tool for analyzing and scoring medical school personal statements 
 
 This application uses machine learning to automatically analyze personal statements for medical school applications, providing detailed feedback and scoring based on established rubrics. The system segments text, classifies content, and provides scores along with explanatory feedback.
 
+## Demo Video
+
+
+https://github.com/user-attachments/assets/80ab748b-09e5-4c9e-b720-abc77f3234f8
+
+
+
 ## Key Features
 
 - **Automated Text Analysis**: Segments personal statements and classifies content into key categories
@@ -291,3 +298,4 @@ The system evaluates personal statements on a 1-4 scale for each category. Here'
 - **Score 1**: Brief, vague, simplistic connection to being a doctor, generic
 
 Use the test scripts to evaluate model performance and compare classification consistency across different embedding approaches.
+
